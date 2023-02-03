@@ -1,6 +1,6 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
-import { tokens } from "../src/theme";
+import { tokens } from "../context/theme";
 import { mockDataInvoices } from "../src/data/mockData";
 import Header from "../src/components/Header";
 
