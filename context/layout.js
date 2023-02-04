@@ -1,20 +1,23 @@
 import { useState } from "react";
-import Topbar from "./scenes/global/Topbar";
-import Sidebar from "./scenes/global/Sidebar";
+import Sidebar from "../pages/scenes/global/Sidebar";
+import Topbar from "../pages/scenes/global/Topbar";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "../context/theme";
-import Topbar from "./scenes/global/Topbar";
-import Sidebar from "./scenes/global/Sidebar";
-
 
 export default function Layout({ children }) {
-    const [theme, colorMode] = useMode();
-    const [isSidebar, setIsSidebar] = useState(true);
-    return (
-        <ColorModeContext.Provider value={colorMode}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-        <Sidebar isSidebar={isSidebar} />
+  const [theme, colorMode] = useMode();
+  const [isSidebar, setIsSidebar] = useState(true);
+
+  return (
+    <ColorModeContext.Provider value={colorMode}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
         <Topbar setIsSidebar={setIsSidebar} />
-    );
-  }
+        <div className="content">
+          <Sidebar isSidebar={isSidebar} />
+          <main>{children}</main>
+        </div>
+      </ThemeProvider>
+    </ColorModeContext.Provider>
+  );
+}
